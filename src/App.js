@@ -1,19 +1,15 @@
-import React, {useState} from 'react';
-import Header from './Components/Header';
-import ThemeContext from './Context/ThemeContext';
-import HeroSection from './Components/HeroSection';
-import './App.css';
+import React, { useState } from "react";
+import Header from "./Components/Header";
+import HeroSection from "./Components/HeroSection";
+import ThemeState from "./Context/ThemeState";
 
-function App() {
-  const themeHook = useState("light")    
+const App = () => {
   return (
-    <ThemeContext.Provider value={themeHook}>
-      <div>
+      <ThemeState>
         <Header />
         <HeroSection />
-      </div>
-    </ThemeContext.Provider>
+      </ThemeState>
   );
-}
+};
 
 export default App;

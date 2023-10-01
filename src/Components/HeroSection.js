@@ -1,18 +1,19 @@
-import React, { useContext } from "react";
-import ThemeContext from "../Context/ThemeContext";
+import React, { useContext, useState } from "react";
 import AppTheme from "../Color";
-
+import ThemeContext from "../Context/ThemeContext";
 const HeroSection = () => {
-  const theme = useContext(ThemeContext)[0];
-  const currentTheme = AppTheme[theme];
+  const theme = useContext(ThemeContext);
+  console.log('theme', theme);
+  const currentTheme = AppTheme[theme.themeState];
 
+  console.log('Current Thene', currentTheme);
   return (
     <div
       style={{
         padding: "1",
         backgroundColor: `${currentTheme.backgroundColor}`,
         color: `${currentTheme.textColor}`,
-        textAlign: "center"
+        textAlign: "center",
       }}
     >
       <h1>Context API Theme Toggler</h1>
@@ -21,12 +22,14 @@ const HeroSection = () => {
         style={{
           backgroundColor: "#26ae60",
           padding: "10px 150px",
-          fontSize: "20px",
           color: "#FFF",
           border: `${currentTheme.border}`,
         }}
+        onClick={() => {
+          theme.updateThemeState(theme.themeState === "light" ? "dark" : "light");
+        }}
       >
-        Change the theme
+        Change the Theme
       </button>
     </div>
   );
